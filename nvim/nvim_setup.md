@@ -19,6 +19,9 @@ npm install eslint --global
 # Ripgrep
 brew install ripgrep
 
+# Bat for syntax highlighting in fzf
+brew install bat
+
 # Install fonts for the Terminal
 # (Hack Regular Nerd Font)
 brew tap homebrew/cask-fonts
