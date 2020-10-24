@@ -208,8 +208,16 @@ set background=dark
 " junegunn/fzf.vim
 " ----------------------------------------------------------------------------
 
-let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
-let $FZF_DEFAULT_OPTS='--reverse'
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
+let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
+let $FZF_DEFAULT_OPTS = "--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
+command! -bang -nargs=? -complete=dir Files
+     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
+set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 
 nnoremap <silent> <C-f> :GFiles<CR>
 nnoremap <silent> <C-g> :Rg<CR>
@@ -248,9 +256,9 @@ let g:airline_symbols.whitespace = 'Ξ'
 " ntpeters/vim-better-whitespace
 " ----------------------------------------------------------------------------
 
-let g:strip_whitespace_confirm=1
-let g:strip_whitelines_at_eof=1
-let g:strip_whitespace_on_save=1
+let g:strip_whitespace_confirm = 1
+let g:strip_whitelines_at_eof = 1
+let g:strip_whitespace_on_save = 1
 
 " ----------------------------------------------------------------------------
 " Shougo/deoplete.nvim
