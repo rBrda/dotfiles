@@ -45,12 +45,17 @@ TODO: write section
 
 ## OSX specific configuration
 
-Make sure your .vimrc is unix format:
+Make sure your .vimrc is unix format (optional):
 ```
 dos2unix .vimrc
 ```
 
-Copy your .vimrc to your home folder and issue the following command:
+Create a symlink for your .vimrc (before this delete the .vimrc in your home dir if there is any):
+```
+ln -sf ~/dotfiles/nvim/.vimrc ~/.vimrc
+```
+
+We will configure Neovim to use the symlinked file instead of the versioned file:
 ```
 mkdir -p ~/.config/nvim
 echo 'source ~/.vimrc' > ~/.config/nvim/init.vim
