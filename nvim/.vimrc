@@ -40,6 +40,9 @@ set noerrorbells                " don't beep
 set hidden                      " keep unsaved buffers
 set autowrite                   " save on buffer switch
 
+set exrc                        " enable reading and loading .vimrc files in project root
+set secure                      " disable shell, autocmd and write commands in those .vimrc files
+
 set backup                      " enable backups
 set swapfile                    " enable swaps
 set undofile                    " enable undos
@@ -285,6 +288,28 @@ function! AleToggle()
     lopen
   endif
 endfunction
+
+" ----------------------------------------------------------------------------
+" vim-vdebug/vdebug
+" ----------------------------------------------------------------------------
+
+let g:vdebug_options = {}
+let g:vdebug_options['ide_key'] = 'PHPSTORM'
+let g:vdebug_options['port'] = 9000
+
+let g:vdebug_keymap = {
+    \    "run" : "<F5>",
+    \    "run_to_cursor" : "<F9>",
+    \    "step_over" : "<F2>",
+    \    "step_into" : "<F3>",
+    \    "step_out" : "<F4>",
+    \    "close" : "<F6>",
+    \    "detach" : "<F7>",
+    \    "set_breakpoint" : "<F10>",
+    \    "get_context" : "<F11>",
+    \    "eval_under_cursor" : "<F12>",
+    \    "eval_visual" : "<Leader>e",
+    \}
 
 " ----------------------------------------------------------------------------
 " intelephense (nodejs package, PHP code completion)
