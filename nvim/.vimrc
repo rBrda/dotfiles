@@ -117,7 +117,7 @@ nnoremap <C-p> :bp<CR>
 nnoremap <C-n> :bn<CR>
 
 " Close buffer
-nnoremap <C-q> :bn<CR>
+nnoremap <C-q> :bd<CR>
 
 " Select all lines
 nnoremap <C-a> <Esc>ggVG<CR>
