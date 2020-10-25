@@ -126,14 +126,18 @@ nnoremap <C-n> :bn<CR>
 " Close buffer
 nnoremap <C-q> :bd<CR>
 
+" Navigation between tabs (next, previous)
+nnoremap <C-Left> gT<CR>
+nnoremap <C-Right> gt<CR>
+
 " Select all lines
 nnoremap <C-a> <Esc>ggVG<CR>
 
 " Copy and paste
 vnoremap <C-c> "+yi
 vnoremap <C-x> "+c
-nnoremap <C-v> <ESC>"+pa
-inoremap <C-v> <ESC>"+pa
+nnoremap <C-v> <Esc>"+pa
+inoremap <C-v> <Esc>"+pa
 
 " Moving lines up and down
 " In OSX Terminal make sure the Option key is used as the Meta key!
@@ -437,6 +441,8 @@ endfunction
 let g:vdebug_options = {}
 let g:vdebug_options['ide_key'] = 'PHPSTORM'
 let g:vdebug_options['port'] = 9000
+let g:vdebug_options['layout'] = 'horizontal'
+let g:vdebug_options['watch_window_style'] = 'compact'
 
 let g:vdebug_keymap = {
     \    "run" : "<F5>",
