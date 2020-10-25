@@ -231,8 +231,8 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
 set rtp+=~/.fzf
 set rtp+=/usr/local/opt/fzf
 
-nnoremap <silent> F :GFiles<CR>
-nnoremap <silent> G :Rg<CR>
+nnoremap <silent> <M-f> :GFiles<CR>
+nnoremap <silent> <M-g> :Rg<CR>
 
 " ----------------------------------------------------------------------------
 " vim-airline/vim-airline
