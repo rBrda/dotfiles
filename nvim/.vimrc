@@ -133,6 +133,10 @@ nnoremap <C-Right> gt<CR>
 " Select all lines
 nnoremap <C-a> <Esc>ggVG<CR>
 
+" Shift and unshift indentation
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
 " Copy and paste
 vnoremap <C-c> "+yi
 vnoremap <C-x> "+c
