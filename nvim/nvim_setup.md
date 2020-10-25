@@ -13,9 +13,6 @@ brew install python3
 # Nodejs
 brew install node
 
-# eslint for javascript linting
-npm install eslint --global
-
 # Ripgrep
 brew install ripgrep
 
@@ -30,6 +27,15 @@ brew cask install font-hack-nerd-font
 # pynvim
 pip install pynvim
 pip3 install pynvim
+
+# yarn
+npm install -g yarn
+
+# eslint for javascript linting
+npm install -g eslint
+
+# neovim extension for nodejs
+npm install -g neovim
 ```
 
 Nvim:
@@ -67,9 +73,13 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
-After first running nvim for the first time, install plugins:
+Run Neovim to install all plugins (this is done automatically in the .vimrc file).
+
+Then configure CoC to use Ale for diagnostics by issuing the `:CocConfig` command and paste the following:
 ```
-:PlugInstall
+{
+    "coc.preferences.diagnostic.displayByAle": true
+}
 ```
 
 ## Linux specific configuration (Ubuntu/Debian)
