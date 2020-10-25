@@ -162,6 +162,7 @@ Plug 'airblade/vim-rooter'
 " Git
 Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
+Plug 'junegunn/gv.vim'
 
 " Theme and looks
 Plug 'vim-airline/vim-airline'
@@ -177,6 +178,7 @@ Plug 'junegunn/fzf.vim'
 " Code editing, completion & syntax checking
 Plug 'dense-analysis/ale'
 Plug 'sheerun/vim-polyglot'
+Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ekalinin/dockerfile.vim'
