@@ -119,16 +119,15 @@ tnoremap <Esc> <C-\><C-n>
 " Clear search result highlighting by hitting ESC
 nnoremap <Esc> :noh<Return><Esc>
 
-" Navigation between buffers (next, previous)
+" Buffers actions
 nnoremap <C-p> :bp<CR>
 nnoremap <C-n> :bn<CR>
-
-" Close buffer
 nnoremap <C-q> :bd<CR>
 
-" Navigation between tabs (next, previous)
+" Tab actions
 nnoremap <C-Left> gT<CR>
 nnoremap <C-Right> gt<CR>
+nnoremap <leader>q :tabclose<CR>
 
 " Select all lines
 nnoremap <C-a> <Esc>ggVG<CR>
@@ -219,6 +218,14 @@ let g:gruvbox_invert_selection='0'
 
 colorscheme gruvbox
 set background=dark
+
+" ----------------------------------------------------------------------------
+" mhinz/vim-signify
+" ----------------------------------------------------------------------------
+
+nnoremap <silent> <leader>sd :SignifyDiff<CR>
+nnoremap <silent> <leader>sh :SignifyToggleHighlight<CR>
+nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
 
 " ----------------------------------------------------------------------------
 " junegunn/fzf.vim
