@@ -51,20 +51,15 @@ TODO: write section
 
 ## OSX specific configuration
 
-Make sure your .vimrc is unix format (optional):
+Make sure your vim config is unix format (optional):
 ```
-dos2unix .vimrc
-```
-
-Create a symlink for your .vimrc (before this delete the .vimrc in your home dir if there is any):
-```
-ln -sf ~/dotfiles/nvim/.vimrc ~/.vimrc
+dos2unix init.vim 
 ```
 
-We will configure Neovim to use the symlinked file instead of the versioned file:
+We will configure Neovim to use the versioned configuration file:
 ```
 mkdir -p ~/.config/nvim
-echo 'source ~/.vimrc' > ~/.config/nvim/init.vim
+echo 'source ~/dotfiles/nvim/init.vim' > ~/.config/nvim/init.vim
 ```
 
 Install vim-plug:
