@@ -235,15 +235,15 @@ nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
 " ----------------------------------------------------------------------------
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
-let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
 let $FZF_DEFAULT_OPTS = "--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+
+if executable('rg')
+    let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
+    set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
+endif
 
 command! -bang -nargs=? -complete=dir Files
      \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-set grepprg=rg\ --vimgrep\ --smart-case\ --hidden\ --follow
-set rtp+=~/.fzf
-set rtp+=/usr/local/opt/fzf
 
 nnoremap <silent> <M-f> :GFiles<CR>
 nnoremap <silent> <M-g> :Rg<CR>
