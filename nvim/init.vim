@@ -168,8 +168,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 
 " Theme and looks
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+Plug 'niklaas/lightline-gitdiff'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'ryanoasis/vim-devicons'
 Plug 'gruvbox-community/gruvbox'
 
@@ -177,6 +178,8 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'antoinemadec/FixCursorHold.nvim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'tpope/vim-eunuch'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -235,7 +238,7 @@ nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
 " ----------------------------------------------------------------------------
 
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.8 } }
-let $FZF_DEFAULT_OPTS = "--ansi --preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
+let $FZF_DEFAULT_OPTS = "--preview-window 'right:60%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
 if executable('rg')
     let $FZF_DEFAULT_COMMAND = 'rg --files --ignore-case --hidden -g "!{.git,node_modules,vendor}/*"'
@@ -243,40 +246,59 @@ if executable('rg')
 endif
 
 command! -bang -nargs=? -complete=dir Files
-     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+    \ call fzf#vim#files(<q-args>, &columns > 80 ? fzf#vim#with_preview() : {}, <bang>0)
+
+command! -bang -nargs=? -complete=dir GFiles
+    \ call fzf#vim#gitfiles(<q-args>, &columns > 80 ? fzf#vim#with_preview() : {}, <bang>0)
 
 nnoremap <silent> <M-f> :GFiles<CR>
 nnoremap <silent> <M-g> :Rg<CR>
 
 " ----------------------------------------------------------------------------
-" vim-airline/vim-airline
+" itchyny/lightline.vim
 " ----------------------------------------------------------------------------
 
-let g:airline#extensions#tabline#enabled = 1
+set showtabline=2
+set noshowmode " disable built-in mode indicator
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+let g:lightline = {
+      \ 'enable': {
+      \   'tabline': 1
+      \ },
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
+      \             [ 'gitdiff'] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ 'component_expand': {
+      \   'gitdiff': 'lightline#gitdiff#get',
+      \   'buffers': 'lightline#bufferline#buffers'
+      \ },
+      \ 'component_type': {
+      \   'gitdiff': 'middle',
+      \   'buffers': 'tabsel'
+      \ },
+      \ 'tabline': {
+      \   'left': [ [ 'buffers' ] ],
+      \   'right': [ [ 'close' ] ]
+      \ },
+      \ }
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '☰'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.maxlinenr = '㏑'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = 'Ɇ'
-let g:airline_symbols.whitespace = 'Ξ'
+" ----------------------------------------------------------------------------
+" mengelbrecht/lightline-bufferline
+" ----------------------------------------------------------------------------
+
+let g:lightline#bufferline#show_number = 1
+let g:lightline#bufferline#shorten_path = 1
+let g:lightline#bufferline#unnamed = '[No Name]'
+let g:lightline#bufferline#unicode_symbols = 0
+let g:lightline#bufferline#enable_devicons = 1
 
 " ----------------------------------------------------------------------------
 " ntpeters/vim-better-whitespace
@@ -345,6 +367,12 @@ augroup FernGroup
   autocmd!
   autocmd FileType fern call FernInit()
 augroup END
+
+" ----------------------------------------------------------------------------
+" lambdalisue/fern-renderer-nerdfont.vim
+" ----------------------------------------------------------------------------
+
+let g:fern#renderer = "nerdfont"
 
 " ----------------------------------------------------------------------------
 " neoclide/coc.nvim
