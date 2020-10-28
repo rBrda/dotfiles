@@ -263,7 +263,7 @@ set noshowmode " disable built-in mode indicator
 
 let g:lightline = {
       \ 'enable': {
-      \   'tabline': 1
+      \   'tabline': 1,
       \ },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -271,24 +271,34 @@ let g:lightline = {
       \             [ 'gitdiff'] ],
       \   'right': [ [ 'lineinfo' ],
       \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'FugitiveHead',
+      \   'filename': 'LightlineFilename',
       \ },
       \ 'component_expand': {
       \   'gitdiff': 'lightline#gitdiff#get',
-      \   'buffers': 'lightline#bufferline#buffers'
+      \   'buffers': 'lightline#bufferline#buffers',
       \ },
       \ 'component_type': {
       \   'gitdiff': 'middle',
-      \   'buffers': 'tabsel'
+      \   'buffers': 'tabsel',
       \ },
       \ 'tabline': {
       \   'left': [ [ 'buffers' ] ],
-      \   'right': [ [ 'close' ] ]
+      \   'right': [ [ 'close' ] ],
       \ },
       \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
 
 " ----------------------------------------------------------------------------
 " mengelbrecht/lightline-bufferline
