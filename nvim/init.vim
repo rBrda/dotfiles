@@ -295,9 +295,12 @@ function! LightlineFilename()
   let root = fnamemodify(get(b:, 'git_dir'), ':h')
   let path = expand('%:p')
   if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
+    let path = path[len(root)+1:]
   endif
-  return expand('%')
+  if strlen(path) > 30
+    let path = pathshorten(path)
+  endif
+  return path
 endfunction
 
 " ----------------------------------------------------------------------------
