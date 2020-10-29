@@ -116,8 +116,8 @@ nnoremap <leader>cp :let @+ = expand("%:p")<CR>
 " Exit Terminal mode by hitting ESC
 tnoremap <Esc> <C-\><C-n>
 
-" Clear search result highlighting by hitting ESC
-nnoremap <Esc> :noh<Return><Esc>
+" Clear last search and highlighting by hitting ESC
+nnoremap <Esc> :noh<CR> <bar> :let @/ = ""<CR><Esc>
 
 " Buffers actions
 nnoremap <C-p> :bp<CR>
@@ -312,6 +312,7 @@ let g:lightline#bufferline#shorten_path = 1
 let g:lightline#bufferline#unnamed = '[No Name]'
 let g:lightline#bufferline#unicode_symbols = 0
 let g:lightline#bufferline#enable_devicons = 1
+let g:lightline#bufferline#smart_path = 0
 
 " ----------------------------------------------------------------------------
 " ntpeters/vim-better-whitespace
