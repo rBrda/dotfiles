@@ -40,9 +40,6 @@ set noerrorbells                " don't beep
 set hidden                      " keep unsaved buffers
 set autowrite                   " save on buffer switch
 
-set exrc                        " enable reading and loading .vimrc files in project root
-set secure                      " disable shell, autocmd and write commands in those .vimrc files
-
 set backup                      " enable backups
 set swapfile                    " enable swaps
 set undofile                    " enable undos
@@ -161,6 +158,7 @@ call plug#begin()
 Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'airblade/vim-rooter'
+Plug 'rBrda/vim-prosettings'
 
 " Git
 Plug 'mhinz/vim-signify'
