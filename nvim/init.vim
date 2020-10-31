@@ -114,7 +114,7 @@ nnoremap <leader>cp :let @+ = expand("%:p")<CR>
 tnoremap <Esc> <C-\><C-n>
 
 " Clear last search and highlighting by hitting ESC
-nnoremap <Esc> :noh<CR> <bar> :let @/ = ""<CR><Esc>
+nnoremap <Esc><Esc> :let @/=""<CR>
 
 " Buffers actions
 nnoremap <C-p> :bp<CR>
@@ -249,8 +249,17 @@ command! -bang -nargs=? -complete=dir Files
 command! -bang -nargs=? -complete=dir GFiles
     \ call fzf#vim#gitfiles(<q-args>, &columns > 80 ? fzf#vim#with_preview() : {}, <bang>0)
 
-nnoremap <silent> <M-f> :GFiles<CR>
+nnoremap <silent> <M-f> :call FzfFiles()<CR>
 nnoremap <silent> <M-g> :Rg<CR>
+
+function! FzfFiles()
+    let is_git = system('git status')
+    if v:shell_error
+        :Files
+    else
+        :GFiles --exclude-standard --others --cached
+    endif
+endfunction
 
 " ----------------------------------------------------------------------------
 " itchyny/lightline.vim
