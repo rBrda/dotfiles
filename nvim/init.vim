@@ -229,7 +229,7 @@ set background=dark
 
 nnoremap <silent> <leader>sd :SignifyDiff<CR>
 nnoremap <silent> <leader>sh :SignifyToggleHighlight<CR>
-nnoremap <silent> <leader>su :SignifyHunkUndo<CR>
+nnoremap <silent> <leader>u :SignifyHunkUndo<CR>
 
 " ----------------------------------------------------------------------------
 " junegunn/fzf.vim
