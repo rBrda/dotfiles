@@ -404,6 +404,7 @@ let g:coc_global_extensions = [
     \ 'coc-html',
     \ 'coc-json',
     \ 'coc-phpls',
+    \ 'coc-tsserver',
     \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
