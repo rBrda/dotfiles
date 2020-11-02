@@ -12,6 +12,7 @@ set nocompatible                " Use Vim settings rather than Vi settings;
 set encoding=utf-8              " set encoding to UTF-8
 set updatetime=50               " faster updates
 set clipboard=unnamedplus       " use system clipboard
+set fileformat=unix             " force unix fileformat
 
 set ignorecase                  " case insensitive searching
 set smartcase                   " will automatically switch to case sensitive search if you use any capitals
