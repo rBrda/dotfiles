@@ -96,57 +96,86 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " ----------------------------------------------------------------------------
 
 " Navigating between open windows
+" @(Windows -> right)
 nnoremap <C-l> <C-W>l
+" @(Windows -> left)
 nnoremap <C-h> <C-W>h
+" @(Windows -> up)
 nnoremap <C-k> <C-W>k
+" @(Windows -> down)
 nnoremap <C-j> <C-W>j
 
 " Splits
+" @(Split -> horizontal)
 nnoremap <leader>h :<C-u>split<CR>
+" @(Split -> vertical)
 nnoremap <leader>v :<C-u>vsplit<CR>
 
 " Fast saves
+" @(Fast save)
 nnoremap <leader>w :w!<CR>
 
 " Copy the full path of the open buffer to clipboard
+" @(Copy full path of current file)
 nnoremap <leader>cp :let @+ = expand("%:p")<CR>
 
 " Exit Terminal mode by hitting ESC
+" @(Exit terminal mode)
 tnoremap <Esc> <C-\><C-n>
 
 " Clear last search and highlighting by hitting ESC
+" @(Clear search result)
 nnoremap <Esc><Esc> :let @/=""<CR>
 
 " Buffers actions
+" @(Buffers -> previous)
 nnoremap <C-p> :bp<CR>
+" @(Buffers -> next)
 nnoremap <C-n> :bn<CR>
+" @(Buffers -> close)
 nnoremap <C-q> :bd<CR>
 
 " Tab actions
+" @(Tabs -> previous)
 nnoremap <C-Left> gT<CR>
+" @(Tabs -> next)
 nnoremap <C-Right> gt<CR>
+" @(Tabs -> close)
 nnoremap <leader>q :tabclose<CR>
 
 " Select all lines
+" @(Select all lines)
 nnoremap <C-a> <Esc>ggVG<CR>
 
 " Shift and unshift indentation
+" @(Shift indentation)
 vnoremap <Tab> >gv
+" @(Unshift indentation)
 vnoremap <S-Tab> <gv
 
 " Copy and paste
+" @(Copy)
 vnoremap <C-c> "+yi
+" @(Cut)
 vnoremap <C-x> "+c
+" @(Paste)
 nnoremap <C-v> <Esc>"+pa
+" @(Paste)
 inoremap <C-v> <Esc>"+pa
 
 " Moving lines up and down
 " In OSX Terminal make sure the Option key is used as the Meta key!
+" @(Move line down)
 nnoremap <M-j> :m .+1<CR>==
+" @(Move line up)
 nnoremap <M-k> :m .-2<CR>==
+" @(Move line down)
 inoremap <M-j> <Esc>:m .+1<CR>==gi
+" @(Move line up)
 inoremap <M-k> <Esc>:m .-2<CR>==gi
+" @(Move line down)
 vnoremap <M-j> :m '>+1<CR>gv=gv
+" @(Move line up)
 vnoremap <M-k> :m '<-2<CR>gv=gv
 
 " ----------------------------------------------------------------------------
@@ -160,6 +189,7 @@ Plug 'tpope/vim-obsession'
 Plug 'dhruvasagar/vim-prosession'
 Plug 'airblade/vim-rooter'
 Plug 'rBrda/vim-prosettings'
+Plug 'rBrda/myKeymap'
 
 " Git
 Plug 'mhinz/vim-signify'
@@ -440,9 +470,13 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
+" @(CoC -> jump to definition)
 nmap <silent> gd <Plug>(coc-definition)
+" @(CoC -> jump to type definition)
 nmap <silent> gy <Plug>(coc-type-definition)
+" @(CoC -> jump to implementation)
 nmap <silent> gi <Plug>(coc-implementation)
+" @(CoC -> show references)
 nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
