@@ -189,9 +189,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/gv.vim'
 
 " Theme and looks
-Plug 'itchyny/lightline.vim'
-Plug 'niklaas/lightline-gitdiff'
-Plug 'mengelbrecht/lightline-bufferline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
 Plug 'gruvbox-community/gruvbox'
 
@@ -285,64 +284,37 @@ function! FzfFiles()
 endfunction
 
 " ----------------------------------------------------------------------------
-" itchyny/lightline.vim
+" vim-airline/vim-airline
 " ----------------------------------------------------------------------------
 
-set showtabline=2
 set noshowmode " disable built-in mode indicator
 
-let g:lightline = {
-      \ 'enable': {
-      \   'tabline': 1,
-      \ },
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ],
-      \             [ 'gitdiff'] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'filename': 'LightlineFilename',
-      \ },
-      \ 'component_expand': {
-      \   'gitdiff': 'lightline#gitdiff#get',
-      \   'buffers': 'lightline#bufferline#buffers',
-      \ },
-      \ 'component_type': {
-      \   'gitdiff': 'middle',
-      \   'buffers': 'tabsel',
-      \ },
-      \ 'tabline': {
-      \   'left': [ [ 'buffers' ] ],
-      \   'right': [ [ 'close' ] ],
-      \ },
-      \ }
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='gruvbox'
 
-function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    let path = path[len(root)+1:]
-  endif
-  if strlen(path) > 30
-    let path = pathshorten(path)
-  endif
-  return path
-endfunction
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
 
-" ----------------------------------------------------------------------------
-" mengelbrecht/lightline-bufferline
-" ----------------------------------------------------------------------------
-
-let g:lightline#bufferline#show_number = 1
-let g:lightline#bufferline#shorten_path = 1
-let g:lightline#bufferline#unnamed = '[No Name]'
-let g:lightline#bufferline#unicode_symbols = 0
-let g:lightline#bufferline#enable_devicons = 1
-let g:lightline#bufferline#smart_path = 0
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '☰'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.maxlinenr = '㏑'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = 'Ɇ'
+let g:airline_symbols.whitespace = 'Ξ'
 
 " ----------------------------------------------------------------------------
 " ntpeters/vim-better-whitespace
