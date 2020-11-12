@@ -95,7 +95,6 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 " Key bindings
 " ----------------------------------------------------------------------------
 
-" Navigating between open windows
 " @(Windows -> right)
 nnoremap <C-l> <C-W>l
 " @(Windows -> left)
@@ -105,29 +104,23 @@ nnoremap <C-k> <C-W>k
 " @(Windows -> down)
 nnoremap <C-j> <C-W>j
 
-" Splits
 " @(Split -> horizontal)
 nnoremap <leader>h :<C-u>split<CR>
 " @(Split -> vertical)
 nnoremap <leader>v :<C-u>vsplit<CR>
 
-" Fast saves
 " @(Fast save)
 nnoremap <leader>w :w!<CR>
 
-" Copy the full path of the open buffer to clipboard
 " @(Copy full path of current file)
 nnoremap <leader>cp :let @+ = expand("%:p")<CR>
 
-" Exit Terminal mode by hitting ESC
 " @(Exit terminal mode)
 tnoremap <Esc> <C-\><C-n>
 
-" Clear last search and highlighting by hitting ESC
 " @(Clear search result)
 nnoremap <Esc><Esc> :let @/=""<CR>
 
-" Buffers actions
 " @(Buffers -> previous)
 nnoremap <C-p> :bp<CR>
 " @(Buffers -> next)
@@ -135,7 +128,6 @@ nnoremap <C-n> :bn<CR>
 " @(Buffers -> close)
 nnoremap <C-q> :bd<CR>
 
-" Tab actions
 " @(Tabs -> previous)
 nnoremap <C-Left> gT<CR>
 " @(Tabs -> next)
@@ -143,17 +135,17 @@ nnoremap <C-Right> gt<CR>
 " @(Tabs -> close)
 nnoremap <leader>q :tabclose<CR>
 
-" Select all lines
+" @(Select word under cursor)
+nnoremap <S-w> viw
+
 " @(Select all lines)
 nnoremap <C-a> <Esc>ggVG<CR>
 
-" Shift and unshift indentation
 " @(Shift indentation)
 vnoremap <Tab> >gv
 " @(Unshift indentation)
 vnoremap <S-Tab> <gv
 
-" Copy and paste
 " @(Copy)
 vnoremap <C-c> "+yi
 " @(Cut)
