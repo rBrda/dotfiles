@@ -126,7 +126,7 @@ nnoremap <C-p> :bp<CR>
 " @(Buffers -> next)
 nnoremap <C-n> :bn<CR>
 " @(Buffers -> close)
-nnoremap <C-q> :bd<CR>
+nnoremap <expr> <silent> <C-q> len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1 ? ':new<bar>bd #<CR>' : ':bp<bar>bd #<CR>'
 
 " @(Tabs -> previous)
 nnoremap <C-Left> gT<CR>
