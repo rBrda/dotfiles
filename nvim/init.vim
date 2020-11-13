@@ -126,7 +126,8 @@ nnoremap <C-p> :bp<CR>
 " @(Buffers -> next)
 nnoremap <C-n> :bn<CR>
 " @(Buffers -> close)
-nnoremap <expr> <silent> <C-q> len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1 ? ':new<bar>bd #<CR>' : ':bp<bar>bd #<CR>'
+nnoremap <silent> <C-q> :call CloseBuffer()<CR>
+cnoremap <silent> bd call CloseBuffer()<CR>
 
 " @(Tabs -> previous)
 nnoremap <C-Left> gT<CR>
@@ -169,6 +170,18 @@ inoremap <M-k> <Esc>:m .-2<CR>==gi
 vnoremap <M-j> :m '>+1<CR>gv=gv
 " @(Move line up)
 vnoremap <M-k> :m '<-2<CR>gv=gv
+
+function! CloseBuffer()
+    if &modified
+        echohl ErrorMsg
+        echom "E89: no write since last change"
+        echohl None
+    elseif len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+        execute ':new | bd #'
+    else
+        execute ':bp | bd #'
+    endif
+endfunction
 
 " ----------------------------------------------------------------------------
 " Plugins
