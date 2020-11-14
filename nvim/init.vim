@@ -217,14 +217,19 @@ Plug 'tpope/vim-eunuch'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-" Code editing, completion & syntax checking
-Plug 'dense-analysis/ale'
-Plug 'sheerun/vim-polyglot'
+" Code editing
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-commentary'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'wellle/targets.vim'
+
+" Code syntax
+Plug 'sheerun/vim-polyglot'
 Plug 'ekalinin/dockerfile.vim'
 Plug 'hashivim/vim-terraform'
+
+" Code linting & completion
+Plug 'dense-analysis/ale'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 
 " Debugging
