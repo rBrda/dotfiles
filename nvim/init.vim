@@ -137,7 +137,7 @@ nnoremap <C-Right> gt<CR>
 nnoremap <leader>q :tabclose<CR>
 
 " @(Select word under cursor)
-nnoremap <S-w> viw
+nnoremap <S-s> viw
 
 " @(Select all lines)
 nnoremap <C-a> <Esc>ggVG<CR>
