@@ -25,6 +25,7 @@ set scrolloff=1                 " always show at least one line above/below the 
 set hlsearch                    " highlight all search matches
 set splitbelow                  " split belowe the current window
 set splitright                  " split to the right of the current window
+set nostartofline               " don't jump back to the beginning of the line when switching between buffers
 
 set backspace=indent,eol,start  " allow backspacing over everything in insert mode
 set nowrap                      " don't wrap lines
